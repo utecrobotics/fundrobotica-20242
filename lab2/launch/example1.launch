@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="lab1" name="Publisher" type="nodo_pub" output="screen" />
+</launch>
