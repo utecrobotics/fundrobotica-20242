@@ -13,6 +13,10 @@ if __name__ == "__main__":
  
  
  # Definir las propiedades de la variable JointState
- 
+ # - Definir el tiempo en el stamp
+
+ # - Definir los nombres de la articulacion como una lista
+
+ # - Definir las posiciones articulares como una lista
  
  # Definir un bucle y su tiempo de muestreo, dentro del bucle, publicar el mensaje
