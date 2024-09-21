@@ -7,7 +7,7 @@ if __name__ == "__main__":
  # Inicializar e indicar el nombre del nodo
  rospy.init_node("Alexander")
  
- # Definir el publicador para los topicos: /robot/joint1_position_controller/command y /robot/joint1_position_controller/command
+ # Definir el publicador para los topicos: /robot/joint1_position_controller/command y /robot/joint2_position_controller/command
  # Se puede revisar el tipo de mensaje que usa el topico, con el comando: $ rostopic info <nombre_topico>
  
  
