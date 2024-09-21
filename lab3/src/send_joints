@@ -17,7 +17,4 @@ if __name__ == "__main__":
  # Definir las propiedades de la variable
  
  
- # Definir el tiempo de muestreo o rate
- 
- 
- # Definir un bucle, dentro del bucle publicar el mensaje, tambien usar el rate
+ # Definir la logica del codigo para que se mueva de una posicion a otra
