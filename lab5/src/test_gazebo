@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import time
 import roslib
 import rospy
@@ -35,7 +35,7 @@ if __name__ == '__main__':
         robot_client.cancel_goal()
 
         # Modification of the motion
-        Q0[0] = Q0[0]
+        Q0[0] = Q0[0]+0.05
 
         g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*5, time_from_start=rospy.Duration(0.01))]
         robot_client.send_goal(g)
