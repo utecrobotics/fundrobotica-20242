@@ -16,10 +16,10 @@ def dh(d, theta, a, alpha):
     
     
 
-def fkine_six(q):
+def fkine(q):
  """
- Calcular la cinematica directa del robot Scorbot IX dados sus valores articulares. 
- q es un vector numpy de la forma [q1, q2, q3, q4, q5]
+ Calcular la cinematica directa del brazo robotico dados sus valores articulares. 
+ q es un vector numpy de la forma [q1, q2, q3, ..., qn]
  """
  # Longitudes (en metros)
 
@@ -34,34 +34,36 @@ def fkine_six(q):
  return T
 
 
-def jacobian_six(q, delta=0.0001):
+def jacobian(q, delta=0.0001):
  """
- Jacobiano analitico para la posicion. Retorna una matriz de 3x5 y toma como
- entrada el vector de configuracion articular q=[q1, q2, q3, q4, q5]
+ Jacobiano analitico para la posicion de un brazo robotico de n grados de libertad. 
+ Retorna una matriz de 3xn y toma como entrada el vector de configuracion articular 
+ q=[q1, q2, q3, ..., qn]
  """
- # Crear una matriz 3x5
- J = np.zeros((3,5))
+ # Crear una matriz 3xn
+ n = q.size
+ J = np.zeros((3,n))
  # Calcular la transformacion homogenea inicial (usando q)
- T = fkine_six(q)
+ T = fkine(q)
     
  # Iteracion para la derivada de cada articulacion (columna)
- for i in range(5):
+ for i in range(n):
   # Copiar la configuracion articular inicial
   dq = copy(q)
   # Calcular nuevamenta la transformacion homogenea e
   # Incrementar la articulacion i-esima usando un delta
   dq[i] += delta
   # Transformacion homogenea luego del incremento (q+delta)
-  T_inc = fkine_six(dq)
+  T_inc = fkine(dq)
   # Aproximacion del Jacobiano de posicion usando diferencias finitas
   J[0:3,i]=(T_inc[0:3,3]-T[0:3,3])/delta
  return J
 
 
-def ikine_six(xdes, q0):
+def ikine(xdes, q0):
  """
- Calcular la cinematica inversa de UR5 numericamente a partir de la configuracion articular inicial de q0. 
- Emplear el metodo de newton
+ Calcular la cinematica inversa de un brazo robotico numericamente a partir 
+ de la configuracion articular inicial de q0. Emplear el metodo de newton.
  """
  epsilon  = 0.001
  max_iter = 1000
@@ -75,10 +77,10 @@ def ikine_six(xdes, q0):
  return q
 
 
-def ik_gradient_six(xdes, q0):
+def ik_gradient(xdes, q0):
  """
- Calcular la cinematica inversa de UR5 numericamente a partir de la configuracion articular inicial de q0. 
- Emplear el metodo gradiente
+ Calcular la cinematica inversa de un brazo robotico numericamente a partir 
+ de la configuracion articular inicial de q0. Emplear el metodo gradiente.
  """
  epsilon  = 0.001
  max_iter = 1000
