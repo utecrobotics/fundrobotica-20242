@@ -9,14 +9,14 @@ from lab6functions import *
 if __name__ == '__main__':
 
  # Initialize the node
- rospy.init_node("testKineControlPosition")
+ rospy.init_node("testKinematicControlPosition")
  print('starting motion ... ')
  # Publisher: publish to the joint_states topic
  pub = rospy.Publisher('joint_states', JointState, queue_size=10)
  # Files for the logs
- fxcurrent = open("/tmp/xcurrent.txt", "w")                
- fxdesired = open("/tmp/xdesired.txt", "w")
- fq = open("/tmp/q.txt", "w")
+ fxcurrent = open("/home/<user>/xcurrent.txt", "w")                
+ fxdesired = open("/home/<user>/xdesired.txt", "w")
+ fq = open("/home/<user>/q.txt", "w")
 
  # Markers for the current and desired positions
  bmarker_current  = BallMarker(color['RED'])
