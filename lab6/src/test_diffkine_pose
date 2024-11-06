@@ -21,7 +21,6 @@ if __name__ == '__main__':
  jnames = ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint']
  
  # Desired pose
- ang = pi/3
  Rd = np.array([[1,0,0],[0,1,0],[0,0,1]])
  qd = Quaternion(matrix=Rd)
  # Find an xd that the robot can reach
