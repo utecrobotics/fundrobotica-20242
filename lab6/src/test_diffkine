@@ -23,15 +23,15 @@ if __name__ == '__main__':
  bmarker_desired = BallMarker(color['GREEN'])
 
  # Joint names
- jnames = ['base__link01', 'link01__link02', 'link02__link03', 'link03__link04', 'link04__link05', 'link05__gripper']
-
+ jnames = ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint']
+ 
  # Desired position
  xd = np.array([-0.45, -0.20, 0.6])
  # Initial configuration
- q0 = np.array([0.0, -0.42, -0.32, 0, -1.65, 0])
+ q0 = np.array([0.0, -1.0, 1.7, -2.2, -1.6, 0.0])
 
  # Resulting initial position (end effector with respect to the base link)
- T = fkine_kr20(q0)
+ T = fkine(q0)
  x0 = T[0:3,3]
 
  # Red marker shows the achieved position
@@ -48,7 +48,7 @@ if __name__ == '__main__':
  jstate.position = q0
 
  # Frequency (in Hz) and control period 
- freq = 200
+ freq = 50
  dt = 1.0/freq
  rate = rospy.Rate(freq)
 
