@@ -69,7 +69,7 @@ if __name__ == '__main__':
   q = 
   
   # Current configuration trnaformation to current position
-  T = fkine_kr20(q)
+  T = fkine(q)
   x = TF2xyzquat(T)
   # Publish the message
   jstate.position = q
