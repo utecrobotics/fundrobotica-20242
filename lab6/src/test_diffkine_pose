@@ -18,20 +18,19 @@ if __name__ == '__main__':
  bmarker_desired = FrameMarker(0.5)
  
  # Joint names
- jnames = ['base__link01', 'link01__link02', 'link02__link03', 'link03__link04', 'link04__link05', 'link05__gripper']
+ jnames = ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint']
  
  # Desired pose
  ang = pi/3
- Rd = np.array([[0,1,0],[1,0,0],[0,0,-1]])
- qd = rot2quat(Rd)
+ Rd = np.array([[1,0,0],[0,1,0],[0,0,1]])
+ qd = Quaternion(matrix=Rd)
  # Find an xd that the robot can reach
- xd = np.array([0.8, 0.0, 0.9, qd[0], qd[1], qd[2], qd[3]])
- #xd  = np.array([0.5, 0.5, 0.6, np.cos(ang/2.0), 0, 0, np.sin(ang/2.0)])
+ xd = np.array([0.3, 0.0, 0.3, qd.w, qd.x, qd.y, qd.z])
  # Initial configuration
- q0  = np.array([0.0, -0.42, -0.32, 0, -1.65, 0])
+ q0 = np.array([0.0, -1.0, 1.7, -2.2, -1.6, 0.0])
  
  # Resulting initial pose (end effector with respect to the base link)
- T = fkine_kr20(q0)
+ T = fkine(q0)
  x0 = TF2xyzquat(T)
  
  # Markers for the current and the desired pose
@@ -47,7 +46,7 @@ if __name__ == '__main__':
  jstate.position = q0
  
  # Frequency (in Hz) and control period 
- freq = 200
+ freq = 50
  dt = 1.0/freq
  rate = rospy.Rate(freq)
  
@@ -62,6 +61,9 @@ if __name__ == '__main__':
  while not rospy.is_shutdown():
   # Current time (needed for ROS)
   jstate.header.stamp = rospy.Time.now()
+  # Calculate the error between poses
+  err_pose=PoseError(x,xd)
+
   # Kinematic control law for the pose (complete here)
   # --------------------------------------------------
   
