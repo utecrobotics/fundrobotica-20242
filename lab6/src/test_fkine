@@ -13,7 +13,7 @@ if __name__ == '__main__':
  bmarker = BallMarker(color['GREEN'])
 
  # Joint names
- jnames = ['base__link01', 'link01__link02', 'link02__link03', 'link03__link04', 'link04__link05', 'link05__gripper']
+ jnames = ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint']
  # Joint Configuration
  q = np.array([0, 0, 0, 0, 0, 0])
 
@@ -41,4 +41,3 @@ if __name__ == '__main__':
   bmarker.publish()
   # Wait for the next iteration
   rate.sleep()
-
