@@ -65,7 +65,13 @@ if __name__ == '__main__':
 
   # Kinematic control law for the pose (complete here)
   # --------------------------------------------------
-  
+
+
+  try:
+   # Calculate the Moore Penrose Jacobian 
+  except:
+   # Calculate the Damped jacobian (Jacobiano amortiguado)
+
   q = 
   
   # Current configuration trnaformation to current position
